@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}User Details{% endblock %}
+{% block content %}
+<h1> User Details </h1>
+<div class="card bg-dark text-white " style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col">
+            <img src={{userd.image_url}} class="img-thumbnail rounded float-start" alt="{{userd.first_name}}">
+        </div>
+        <div class="col-8">
+            <div class="card-body">
+                <h2 class="card-title">{{userd.first_name}} {{userd.last_name}} </h2>
+                <a class="btn btn-outline-primary" type=button href="/users/{{userd.id}}/edit">Edit</a>
+                <a class="btn btn-outline-danger" type=button href="/users/{{userd.id}}/delete">Delete</a>
+                <div>
+                    <h1>Posts</h1>
+                    <ul>
+                        {% for post in pos %}
+                        <li><a href='/posts/{{post.id}}'>{{post.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                    <a class="btn btn-outline-primary" type=button href="/users/{{userd.id}}/post/new">Add post</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="/">back</a>
+{% endblock %}
