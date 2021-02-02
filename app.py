@@ -112,6 +112,7 @@ def detail_post(post_id):
 @app.route('/posts/<int:post_id>/edit')
 def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
+    print(post)
     return render_template("post_edit.html", post=post)
 
 
