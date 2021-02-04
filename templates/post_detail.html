@@ -4,9 +4,16 @@
 <div class="container">
     <h1>{{posts.title}}</h1>
     <P>{{posts.content}}</P>
-    <a class='btn btn-outline-primary' href='/users'>cancel</a>
-    <a class='btn btn-primary' href='/posts/{{posts.id}}/edit'>Edit</a>
-    <a class='btn btn-danger' href='/posts/{{posts.id}}/delete'>Delete</a>
+    <div><b>Tags:</b>
+        {% for p in posts.relation %}
+        <samll><i><a class="btn btn-primary rounded-pill btn-sm" href="/tags/{{p.id}}">{{p.name}}</a></i></samll>
+        {% endfor %}
+    </div>
+    <div class='mt-3'>
+        <a class='btn btn-outline-primary' href='/users'>Cancel</a>
+        <a class='btn btn-primary' href='/posts/{{posts.id}}/edit'>Edit</a>
+        <a class='btn btn-danger' href='/posts/{{posts.id}}/delete'>Delete</a>
+    </div>
 </div>
 
 {% endblock %}

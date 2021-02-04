@@ -12,7 +12,16 @@
         <textarea class="form-control" id="content" rows="3" placeholder="Enter text here!" name='content'
             required></textarea>
     </div>
-    <button class="btn btn-success" type="submit">Add</button>
-    <a class="btn btn-info" type="button" href="/">Cancle</a>
+
+    {% for tags in tag %}
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tagname" value={{tags.id}} id="tags">
+        <label class="form-check-label" for="tags">
+            {{tags.name}}
+        </label>
+    </div>
+    {% endfor %}
+    <button class="btn btn-success mt-3" type="submit">Add</button>
+    <a class="btn btn-info mt-3" type="button" href="/">Cancle</a>
 </form>
 {% endblock %}

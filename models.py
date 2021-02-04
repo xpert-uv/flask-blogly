@@ -35,7 +35,28 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user_table.id'), nullable=False)
+    relation = db.relationship('Tag', secondary='posttag', backref='posts')
 
     def __repr__(self):
         s = self
         return f"<Posts id {s.id} {s.title} {s.content} {s.created_at}>"
+
+
+class PostTag(db.Model):
+
+    __tablename__ = 'posttag'
+
+    post_id = db.Column(db.Integer, db.ForeignKey(
+        'posts.id'), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+
+
+class Tag(db.Model):
+
+    __tablename__ = 'tag'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
+
+    def __repr__(self):
+        return f'tag_id = {self.id} tag_name={self.name}'
